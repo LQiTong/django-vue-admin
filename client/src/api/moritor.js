@@ -1,7 +1,7 @@
-import { getToken } from "@/utils/auth"
+import { getToken } from '@/utils/auth' // eslint-disable-line
 import request from '@/utils/request'
 
-//查看日志列表
+// 查看日志列表
 
 export function getlogList(query) {
   return request({
@@ -10,14 +10,14 @@ export function getlogList(query) {
     params: query
   })
 }
-//查看日志详情
+// 查看日志详情
 export function getLog(name) {
   return request({
     url: `/monitor/log/${name}/`,
     method: 'get'
   })
 }
-//获取服务器状态信息
+// 获取服务器状态信息
 export function getServerList() {
   return request({
     url: '/monitor/server/',

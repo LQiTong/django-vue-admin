@@ -83,44 +83,45 @@
           type="primary"
           icon="el-icon-search"
           @click="handleFilter"
-          >搜索
+        >搜索
         </el-button>
         <el-button
           class="filter-item"
           type="primary"
           icon="el-icon-refresh-left"
           @click="resetFilter"
-          >重置
+        >重置
         </el-button>
       </div>
       <el-table
+        v-el-height-adaptive-table="{ bottomOffset: 30 }"
         :data="tableData"
         style="width: 100%"
         height="100"
-        v-el-height-adaptive-table="{ bottomOffset: 30 }"
       >
-        <el-table-column prop="name" label="日志名称"> </el-table-column>
-        <el-table-column prop="size" label="日志大小"> </el-table-column>
+        <el-table-column prop="name" label="日志名称" />
+        <el-table-column prop="size" label="日志大小" />
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small"
-              >查看详情</el-button
-            >
+            <el-button
+              type="text"
+              size="small"
+              @click="handleClick(scope.row)"
+            >查看详情</el-button>
           </template>
         </el-table-column>
       </el-table>
       <el-dialog :visible.sync="dialogVisible" width="80%" title="日志详情">
-        <div v-html="logdec" class="dialogDiv"></div>
+        <div class="dialogDiv" v-html="logdec" />
       </el-dialog>
     </el-card>
   </div>
 </template>
 
-
 <script>
-import { getlogList, getLog, getServerList } from "@/api/moritor";
+import { getlogList, getLog, getServerList } from '@/api/moritor'
 
-const defaultCMA = {};
+const defaultCMA = {} // eslint-disable-line
 export default {
   components: {},
   data() {
@@ -130,48 +131,48 @@ export default {
       diskData: [],
       memoryData: [],
       dialogVisible: false,
-      logdec: "",
-      text: "",
-      listQuery: {},
-    };
+      logdec: '',
+      text: '',
+      listQuery: {}
+    }
   },
   computed: {},
   watch: {},
   created() {
-    this.getlogList();
-    this.getServerList();
+    this.getlogList()
+    this.getServerList()
   },
   methods: {
     getlogList() {
       getlogList(this.listQuery).then((response) => {
         if (response.data) {
-          this.tableData = response.data;
+          this.tableData = response.data
         }
-      });
+      })
     },
     handleFilter() {
-      this.getlogList();
+      this.getlogList()
     },
     resetFilter() {
-      this.getlogList();
+      this.getlogList()
     },
     getServerList() {
       getServerList().then((response) => {
         if (response.data) {
-          this.cpuData = response.data.cpu;
-          this.diskData = response.data.disk;
-          this.memoryData = response.data.memory;
+          this.cpuData = response.data.cpu
+          this.diskData = response.data.disk
+          this.memoryData = response.data.memory
         }
-      });
+      })
     },
     handleClick(row) {
-      this.dialogVisible = true;
+      this.dialogVisible = true
       getLog(row.name).then((response) => {
         if (response.data) {
-          this.logdec = response.data.replace(/\n/gm, "<br/>");
+          this.logdec = response.data.replace(/\n/gm, '<br/>')
         }
-      });
-    },
-  },
-};
+      })
+    }
+  }
+}
 </script>

@@ -41,7 +41,6 @@ const actions = {
         commit('SET_TOKEN', data.access)
         setToken(data.access)
         resolve()
-    
       }).catch(error => {
         reject(error)
       })
@@ -64,7 +63,7 @@ const actions = {
         if (!perms || perms.length <= 0) {
           reject('没有任何权限!')
         }
-        
+
         commit('SET_PERMS', perms)
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)

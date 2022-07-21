@@ -1,4 +1,4 @@
-import { getToken } from "@/utils/auth"
+import { getToken } from '@/utils/auth'
 import request from '@/utils/request'
 
 export function upUrl() {
@@ -6,7 +6,7 @@ export function upUrl() {
 }
 
 export function upHeaders() {
-  return { Authorization: "Bearer " + getToken() }
+  return { Authorization: 'Bearer ' + getToken() }
 }
 
 export function getFileList(query) {

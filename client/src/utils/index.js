@@ -357,7 +357,7 @@ export function genTree(data) {
   const map = {}
   data.forEach(item => {
     item.label = item.name
-    if(item.fullname){
+    if (item.fullname) {
       item.label = item.fullname
     }
     item.value = item.id
@@ -374,7 +374,7 @@ export function genTree(data) {
   return result
 }
 
-const arrChange = arr => arr.map(item => {
+const arrChange = arr => arr.map(item => { // eslint-disable-line
   const res = {}
   for (const key in item) {
     const _key = key === 'name' ? 'label' : key
